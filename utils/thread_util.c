@@ -17,7 +17,16 @@ int32_t thread_mutex_lock(thread_mutex_t * mutex){
 	int32_t ret = RTCODE_SUCCESS;
 	ret = pthread_mutex_lock((pthread_mutex_t*)mutex);
 	if(RTCODE_ERROR == ret){
-		log_error("get mutex failed,return=%d,errno='%m'",ret);
+		log_error("get thread mutex lock failed,return=%d,errno='%m'",ret);
+	}
+	return ret;
+}
+
+int32_t thread_mutex_timedlock(thread_mutex_t * mutex, const struct timespec * timeout){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = pthread_mutex_timedlock((pthread_mutex_t *mutex),timeout);
+	if(RTCODE_ERROR == ret){
+		log_error("get thread mutex timelock failed,ret=%d,errno='%m'",ret);
 	}
 	return ret;
 }
@@ -35,7 +44,7 @@ int32_t thread_mutex_destroy(thread_mutexattr_t * mutex){
 	int32_t ret = RTCODE_SUCCESS;
 	ret = pthread_mutex_destroy((pthread_mutex_t *)mutex);
 	if(RTCODE_ERROR == ret){
-		log_error("destroy thread mutex failed,ret=%d,err='%m'",ret);
+		log_error("destroy thread mutex failed,ret=%d,errno='%m'",ret);
 	}
 	return ret;
 }
