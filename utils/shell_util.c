@@ -1,6 +1,7 @@
 #include "shell_util.h"
 
 int32_t shell_exec(const char *command,char *buffer,int32_t buffer_length){
+	int32_t ret = RTCODE_SUCCESS;
     FILE *file = NULL;
 	char *p = NULL;
 	int rc = 0;
