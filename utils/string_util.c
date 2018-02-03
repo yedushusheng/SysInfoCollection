@@ -1,6 +1,6 @@
 #include"string_util.h"
 
-int32_t check_null(p){ 
+void check_null(p){ 
 	if(p)
 		return RTCODE_ERROR;
 	else
