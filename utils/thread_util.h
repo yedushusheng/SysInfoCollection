@@ -18,6 +18,7 @@ typedef pthread_t thread_t;
 /*thread mutex function definition*/
 int32_t thread_mutex_init(thread_mutex_t *mutex,thread_mutexattr_t *attr);
 int32_t thread_mutex_lock(thread_mutex_t *mutex);
+int32_t thread_mutex_timedlock(thread_mutex_t *mutex,const struct timespec *timeout);
 int32_t thread_mutex_unlock(thread_mutex_t *mutex);
 int32_t thread_mutex_destroy(thread_mutexattr_t *mutex);
 /*thread rwlock function definition*/
