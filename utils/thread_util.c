@@ -48,3 +48,12 @@ int32_t thread_mutex_destroy(thread_mutexattr_t * mutex){
 	}
 	return ret;
 }
+
+int32_t thread_rwlock_init(thread_rwlock_t * rwlock, thread_rwlockattr_t * attr){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = pthread_rwlock_init((pthread_rwlock_t *)rwlock,(pthread_rwlockattr_t *)attr);
+	if(RTCODE_ERROR == ret){
+		log_error("init thread rwlock failed,ret=%d,errno='%m'",ret);
+	}
+	return ret;
+}
