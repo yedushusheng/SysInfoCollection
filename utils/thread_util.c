@@ -30,3 +30,12 @@ int32_t thread_mutex_unlock(thread_mutex_t * mutex){
 	}
 	return ret;
 }
+
+int32_t thread_mutex_destroy(thread_mutexattr_t * mutex){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = pthread_mutex_destroy((pthread_mutex_t *)mutex);
+	if(RTCODE_ERROR == ret){
+		log_error("destroy thread mutex failed,ret=%d,err='%m'",ret);
+	}
+	return ret;
+}
