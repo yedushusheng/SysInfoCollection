@@ -75,3 +75,12 @@ int32_t thread_rwlock_wrlock(thread_rwlock_t * rwlock){
 	}
 	return ret;
 }
+
+int32_t thread_rwlock_unlock(thread_rwlock_t * rwlock){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = pthread_rwlock_unlock((pthread_rwlock_t *)rwlock);
+	if(RTCODE_ERROR == ret){
+		log_error("get thread lock failed,ret=%d,errno='%m'",ret);
+	}
+	return ret;
+}
