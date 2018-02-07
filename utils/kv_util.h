@@ -6,6 +6,8 @@
 
 typedef GKeyFile kv_data_t;
 
+int32_t write_lock();
+int32_t write_unlock();
 kv_data_t *kv_new();
 int32_t kv_free(kv_data_t *kvdata);
 int32_t kv_get_int32(kv_data_t *kvdata,const char *domain,const char *key,int32_t *value);

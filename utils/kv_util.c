@@ -10,6 +10,29 @@
 
 pthread_mutex_t write_mutex = PTHREAD_MUTEX_INITIALIZER;
 
+int32_t write_lock(){
+	struct timespec ts;
+	int32_t err = RTCODE_ERROR;
+
+	while(err){
+		err = pthread_mutex_timedlock(&write_mutex,&ts);
+		if(err){
+			log_warning("write lock failed");
+		}
+	}
+	return err;
+}
+
+int32_t write_unlock(){
+	int32_t err = RTCODE_ERROR;
+
+	err = pthread_mutex_unlock(&write_mutex);
+	if(err){
+		log_warning("write unlock failed.");
+	}
+	return err;
+}
+
 kv_data_t *kv_new(){
 	return g_key_file_new();
 }
