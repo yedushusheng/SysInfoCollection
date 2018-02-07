@@ -1,4 +1,14 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<assert.h>
+#include<errno.h>
+#include<sys/syscall.h>
+
 #include"kv_util.h"
+#include"log_util.h"
+
+pthread_mutex_t write_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 kv_data_t *kv_new(){
 	return g_key_file_new();
