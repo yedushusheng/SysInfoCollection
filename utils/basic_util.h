@@ -29,3 +29,13 @@ typedef unsigned long int uint64_t ;
 			return ret_val;\
 		}\
 	}while(0)
+
+#define check_null_return_void(var){\
+	do{\
+		if(NULL==(var)){\
+			log_error("parameter is invalid(null poniter!:var="#var);\
+			func_exit();\
+			assert();\
+			return;\
+		}\
+	}while(0)
