@@ -30,6 +30,16 @@ typedef unsigned long int uint64_t ;
 		}\
 	}while(0)
 
+#define check_null(var,ret)\
+	do{\
+		if(NULL==(var)){\
+			log_error("parameter is invalid(null pointer)!:var="#var);\
+			func_exit();\
+			assert(0);\
+			return ret;\
+		}\
+	}while(0)
+
 #define check_null_return_void(var){\
 	do{\
 		if(NULL==(var)){\
