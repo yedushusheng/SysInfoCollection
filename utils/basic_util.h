@@ -18,5 +18,14 @@ typedef unsigned long int uint64_t ;
 			log_error(format,##args);\
 			func_exit();\
 			return ret;\
-		}
+		}\
+	}while(0)
+
+#define check_set_return(err,err_code,ret_val,format,args...)\
+	do{\
+		if(err!=RTCODE_SUCCESS){\
+			err_code = err;\
+			log_error(format,##args);\
+			return ret_val;\
+		}\
 	}while(0)
