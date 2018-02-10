@@ -45,7 +45,7 @@ typedef unsigned long int uint64_t ;
 		if(NULL==(var)){\
 			log_error("parameter is invalid(null poniter!:var="#var);\
 			func_exit();\
-			assert();\
+			assert(0);\
 			return;\
 		}\
 	}while(0)
