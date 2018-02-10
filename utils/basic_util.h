@@ -11,3 +11,12 @@ typedef unsigned long int uint64_t ;
 
 #define func_enter() log_info("enter function")
 #define func_exit()  log_info("exit function")
+
+#define check_return(ret,format,args...)\
+	do{\
+		if(ret!=RTCODE_SUCCESS){\
+			log_error(format,##args);\
+			func_exit();\
+			return ret;\
+		}
+	}while(0)
