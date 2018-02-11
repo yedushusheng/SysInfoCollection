@@ -93,3 +93,12 @@ int32_t thread_rwlock_destroy(thread_rwlock_t * rwlock){
 	}
 	return ret;
 }
+
+int32_t thread_join(thread_t thread, void * * returnval){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = pthread_join((pthread_t)thread,returnval);
+	if(RTCODE_ERROR == ret){
+		log_error("join thread failed,ret=%d,err='%m'",ret);
+	}
+	return returnval;
+}

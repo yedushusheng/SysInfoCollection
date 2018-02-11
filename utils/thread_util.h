@@ -26,3 +26,5 @@ int32_t thread_rwlock_init(thread_rwlock_t *rwlock,thread_rwlockattr_t *attr);
 int32_t thread_rwlock_rdlock(thread_rwlock_t *rwlock);
 int32_t thread_rwlock_wrlock(thread_rwlock_t *rwlock);
 int32_t thread_rwlock_unlock(thread_rwlock_t *rwlock);
+/*thread join*/
+int32_t thread_join(thread_t thread,void **returnval);
