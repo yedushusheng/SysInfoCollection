@@ -2,3 +2,5 @@
 #define __TIME_UTIL_H_
 
 void time_to_str(time_t time,char* time_str,int32_t length);
+
+void time_sec_sleep(uint64_t sec);
