@@ -5,6 +5,28 @@ uuid_t one_uuid;
 static pthread_key_t uuid_log_key;
 
 /****************************************
+* 函数名称: uuid_key_init
+* 函数功能: 初始化uuid的key
+* 入     参: 无
+* 出     参: 无
+* 返 回 值: ret 
+* 备     注: 无
+****************************************/
+int32_t uuid_key_init(){
+	int32_t ret = RTCODE_SUCCESS;
+
+	ret = pthread_key_create(&uuid_log_key,uuid_key_destroy);
+	if(RTCODE_ERROR == ret){
+		log_error("pthread key create failed,sysinfo:'%m'");
+		ret = RTCODE_ERROR;
+	}
+	else{
+		ret = RTCODE_SUCCESS;
+	}
+	return ret;
+}
+
+/****************************************
 * 函数名称: uuid_key_destroy
 * 函数功能: 释放键key指针内存
 * 入     参: void指针pointer
