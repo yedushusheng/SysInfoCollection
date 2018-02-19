@@ -4,6 +4,14 @@ uuid_t null_uuid;
 uuid_t one_uuid;
 static pthread_key_t uuid_log_key;
 
+void uuid_key_destroy(void * pointer){
+	if(NULL != pointer){
+		free(pointer);
+		pointer = NULL;
+	}
+	return;
+}
+
 int32_t uuid_cpmpare(uuid_t uuid1, uuid_t uuid2){
 	int32_t ret = RTCODE_SUCCESS;
 	int32_t i = 0;
