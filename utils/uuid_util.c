@@ -15,3 +15,16 @@ int32_t uuid_cpmpare(uuid_t uuid1, uuid_t uuid2){
 	}
 	return ret;
 }
+
+int32_t uuid_str_is_valid(char * uuid_str){
+	int32_t ret = RTCODE_SUCCESS;
+	if(NULL == id)
+		ret = RTCODE_ERROR;
+	if(strlen(id) != 36)
+		ret = RTCODE_ERROR;
+	if(id[8]!="||id[13]!="||id[18]!="||id[23]!=")
+		ret = RTCODE_ERROR;
+	else
+		ret = RTCODE_SUCCESS;
+	return ret;
+}
