@@ -1,8 +1,15 @@
 #include "uuid_util.h"
 
+struct uuid_log{
+	int32_t index;
+	char uuid_str[50][40];
+};
+
 uuid_t null_uuid;
 uuid_t one_uuid;
+
 static pthread_key_t uuid_log_key;
+
 
 /****************************************
 * 函数名称: uuid_key_init
@@ -42,6 +49,50 @@ void uuid_key_destroy(void * pointer){
 	return;
 }
 
+/****************************************
+* 函数名称: uuid_unparse
+* 函数功能: 解析uuid
+* 入     参: uuid
+* 出     参: 无
+* 返 回 值: ret 
+* 备     注: 无
+****************************************/
+char *uuid_unparse(uuid_t uuid){
+	int32_t index = 0;
+	struct uuid_log *uuid_log_buf = NULL;
+	uuid_log_buf = (struct uuid_log*)pthread_getspecific(uuid_log_key);
+
+	if(NULL == uuid_log_buf){
+		uuid_log_buf = (struct uuid_log *)calloc(1,sizeof(struct uuid_log));
+		if(NULL == uuid_log_buf){
+			log_error("calloc buffer for uuid log buffer failed,sysinfo:'%m'");
+			return NULL;
+		}
+	}
+	if(pthread_setspecific(uuid_log_key,uuid_log_buf)!=0){
+		log_error("pthread set specific failed,sysinfo:'%m'");
+		return NULL;
+	}
+
+	(uuid_log_buf->index)++;
+	if(uuid_log_buf->index >= 50){
+		uuid_log_buf->index = 0;
+	}
+
+	index = uuid_log_buf->index;
+	uuid_unparse(uuid,uuid_log_buf->uuid_str[index]);
+
+	return uuid_log_buf->uuid_str[index];
+}
+
+/****************************************
+* 函数名称: uuid_cpmpare
+* 函数功能: 比较两个uuid
+* 入     参: uuid1，uuid2
+* 出     参: 无
+* 返 回 值: ret 
+* 备     注: 无
+****************************************/
 int32_t uuid_cpmpare(uuid_t uuid1, uuid_t uuid2){
 	int32_t ret = RTCODE_SUCCESS;
 	int32_t i = 0;
@@ -54,6 +105,14 @@ int32_t uuid_cpmpare(uuid_t uuid1, uuid_t uuid2){
 	return ret;
 }
 
+/****************************************
+* 函数名称: uuid_str_is_valid
+* 函数功能: 判断uuid的字符串是否有效
+* 入     参: char类型指针uuid_str
+* 出     参: 无
+* 返 回 值: ret 
+* 备     注: 无
+****************************************/
 int32_t uuid_str_is_valid(char * uuid_str){
 	int32_t ret = RTCODE_SUCCESS;
 	if(NULL == id)
