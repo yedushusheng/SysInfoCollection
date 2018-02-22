@@ -15,3 +15,12 @@ int32_t net_socket(int32_t family, int32_t type, int32_t protocol){
 	}
 	return ret;
 }
+
+int32_t net_listen(int sock_fd, int32_t back_log){
+	int32_t ret = RTCODE_SUCCESS;
+	ret = listen(sock_fd,back_log);
+	if(RTCODE_ERROR == ret){
+		log_error("listen(%d,%d,%d)call failed,error[%d] info is:%s.",sock_fd,back_log,errno,strerror(errno));
+	}
+	return ret;
+}
