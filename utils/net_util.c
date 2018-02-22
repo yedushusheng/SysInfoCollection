@@ -24,3 +24,13 @@ int32_t net_listen(int sock_fd, int32_t back_log){
 	}
 	return ret;
 }
+
+int32_t net_accept(int sock_fd, struct sockaddr * addr, socklen_t * addr_len){
+	int conn_fd = 0;
+	conn_fd = accept(sock_fd,addr,addr_len);
+	if(conn_fd < 0){
+		log_error("accept(%d,%d,%d)call failed,error[%d]info is:%s.",sock_fd,strerror(errno));
+		return RTCODE_ERROR;
+	}
+	return conn_fd;
+}
