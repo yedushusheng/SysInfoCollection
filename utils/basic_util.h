@@ -64,3 +64,12 @@ typedef unsigned long int uint64_t ;
 			return ret;\
 		}\
 	}while(0)
+
+#define do_fail_log(exp,done,format,args...)\
+	do{\
+		if(exp){\
+			done;\
+			log_error(format,##args);\
+		}\
+	}while(0)
+		
