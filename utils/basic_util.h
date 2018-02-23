@@ -49,3 +49,10 @@ typedef unsigned long int uint64_t ;
 			return;\
 		}\
 	}while(0)
+
+#define check_fail_log(ret,format,args...)\
+	do{\
+		if(RTCODE_ERROR == ret){\
+			log_error(format,##args);\
+		}\
+	}while(0)
