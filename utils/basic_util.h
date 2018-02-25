@@ -90,7 +90,16 @@ typedef unsigned long int uint64_t ;
 		}\
 	}while(0)
 
-#define goto_log_return_if_fail(exp,tag,ret,formar,args...){\
+#define goto_log_ret_void__if_fail(exp,tag,formar,args...){\
+	do{\
+		if(exp){\
+			goto tag;\
+			log_error(foramt,##args);\
+			return;\
+		}\
+	}while(0)
+	
+#define goto_log_ret_if_fail(exp,tag,ret,formar,args...){\
 	do{\
 		if(exp){\
 			goto tag;\
