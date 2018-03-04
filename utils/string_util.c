@@ -6,3 +6,7 @@ void check_null(p){
 	else
 		return RTCODE_SUCCESS;
 }
+
+int32_t str_to_int(char * str, int32_t base, int32_t num){
+
+}

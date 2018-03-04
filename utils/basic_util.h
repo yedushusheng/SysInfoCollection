@@ -9,6 +9,10 @@ typedef unsigned int uint32_t ;
 typedef long int int64_t ;
 typedef unsigned long int uint64_t ;
 
+/*define the cahr type*/
+#define MAX_STR_LEN 256
+typedef char[MAX_STR_LEN] maxstr ;
+
 #define func_enter() log_info("enter function")
 #define func_exit()  log_info("exit function")
 
