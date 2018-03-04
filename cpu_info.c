@@ -22,5 +22,9 @@ int32_t get_cpu_phy_num(int32_t *core){
 	}
 
 	ret = str_to_int(buf,10,core);
+	if(RTCODE_ERROR == ret){
+		log_error("string to int failed,str=%s,ret=%d",buf,ret);
+		ret = RTCODE_ERROR;
+	}
 	return ret;
 }
