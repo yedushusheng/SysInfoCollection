@@ -74,7 +74,16 @@ int32_t get_cpu_freq(int32_t * freq){
 	check_null(freq, RTCODE_ERROR);
 
 	snprintf(cmd,sizeof(cmd),"%s","cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq");
-	shell_exec(cmd, buf, sizeof(buf));
+	ret = shell_exec(cmd, buf, sizeof(buf));
+	if(RTCODE_ERROR == ret){
+		log_error("exec cmd failed,cmd='%s',err='%s'",cmd,buf);
+		return ret;
+	}
 
-	str_to_int(buf, 10, &freq);
+	ret = str_to_int(buf, 10, core);
+	if(RTCODE_ERROR == ret){
+		log_error("string to int failed,str=%s,ret=%d",buf,ret);
+		return RTCODE_ERROR;
+	}
+	return ret;
 }
