@@ -2,6 +2,7 @@
 #define RTCODE_ERROR -1
 #define RTCODE_SUCCESS 0
 #define RTCODE_PARAM_ERROR -1
+#define RTCODE_EXE_ERROR -1
 
 /*define the data type*/
 typedef int int32_t ;
