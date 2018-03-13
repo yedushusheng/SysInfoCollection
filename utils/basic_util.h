@@ -111,20 +111,20 @@ typedef char[MAX_STR_LEN] maxstr ;
 		}\
 	}while(0)
 
-#define goto_log_ret_void__if_fail(exp,tag,formar,args...){\
+#define goto_log_ret_void__if_fail(exp,tag,format,args...){\
 	do{\
 		if(exp){\
 			goto tag;\
-			log_error(foramt,##args);\
+			log_error(format,##args);\
 			return;\
 		}\
 	}while(0)
 	
-#define goto_log_ret_if_fail(exp,tag,ret,formar,args...){\
+#define goto_log_ret_if_fail(exp,tag,ret,format,args...){\
 	do{\
 		if(exp){\
 			goto tag;\
-			log_error(foramt,##args);\
+			log_error(format,##args);\
 			return ret;\
 		}\
 	}while(0)
