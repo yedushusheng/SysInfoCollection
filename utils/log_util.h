@@ -7,6 +7,20 @@
 	}\
 while(0)
 		
-void log_warning();
-void log_error();
-void log_fatal();
+#define log_warning(format,args...){\
+	do{\
+		log_info(format,##args);\
+	}\
+while(0)
+	
+#define log_error(format,args...){\
+	do{\
+		log_info(format,##args);\
+	}\
+while(0)
+	
+#define log_fatal(format,args...){\
+	do{\
+		log_info(format,##args);
+	}\
+while(0)
