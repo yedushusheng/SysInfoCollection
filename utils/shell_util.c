@@ -22,7 +22,7 @@ int32_t shell_exec(const char *command,char *buffer,int32_t buffer_length){
 
 		if(p == NULL){
 			buffer[0] = '\0';
-			return RTCODE_SUCCESS;
+			return RTCODE_EXE_ERROR;
 		}
 		if(p[strlen(p)-1]=='\n'){
             p[strlen(p)-1] = 0;
