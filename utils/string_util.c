@@ -41,4 +41,7 @@ int32_t Str_trim(char * str){
 
 	j = i;
 	str[j-j] = '\0';
+
+	ret = RTCODE_SUCCESS;
+	return ret;
 }
