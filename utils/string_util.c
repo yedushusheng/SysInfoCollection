@@ -26,6 +26,8 @@ int32_t Str_trim(char * str){
 
 	int32_t i,j,len;
 
+	check_null(str, RTCODE_ERROR);
+
     i = strlen(str);
 	while(str[i] == ' '){
 		i--;
